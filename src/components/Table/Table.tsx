@@ -1,4 +1,5 @@
 import React from "react";
+import { TableContainer } from "./TableCss";
 
 interface IData {
   imagen: String;
@@ -23,12 +24,14 @@ interface ITable {
 
 const Table: React.FC<ITable> = ({ data, columns, handleAvailable }) => {
   return (
-    <>
-      <table>
-        <caption>Bienvenido a la biblioteca Ualá</caption>
+    <TableContainer>
+      <table className="t-books">
+        <caption>
+          <h3 className="t-title">Bienvenido a la biblioteca Ualá</h3>
+        </caption>
         <thead>
           <tr>
-            {columns.map((column) => (
+            {columns.map((column: IColumnData) => (
               <th>{column.title}</th>
             ))}
           </tr>
@@ -56,7 +59,7 @@ const Table: React.FC<ITable> = ({ data, columns, handleAvailable }) => {
           ))}
         </tbody>
       </table>
-    </>
+    </TableContainer>
   );
 };
 

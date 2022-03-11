@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "../../components/Button/Button";
 import { useAuth } from "../../context/AuthContext/AuthContext";
 import { LoginContainer } from "./loginCss";
 
@@ -15,17 +16,30 @@ const Login = () => {
 
   return (
     <LoginContainer>
-      <input
-        onChange={(e: any) => handleLogin(e.target)}
-        name="email"
-        type="text"
-      />
-      <input
-        onChange={(e: any) => handleLogin(e.target)}
-        name="password"
-        type="password"
-      />
-      <button onClick={() => login(email, password)}>Sign In</button>
+      <div className="container">
+        <div className="inputContainer">
+          <input
+            onChange={(e: any) => handleLogin(e.target)}
+            name="email"
+            type="text"
+          />
+        </div>
+        <div className="inputContainer">
+          <input
+            onChange={(e: any) => handleLogin(e.target)}
+            name="password"
+            type="password"
+          />
+        </div>
+        <div className="inputContainer">
+          <Button
+            width="110px"
+            color="#664b8e"
+            text="Sign In"
+            onClick={() => login(email, password)}
+          />
+        </div>
+      </div>
     </LoginContainer>
   );
 };

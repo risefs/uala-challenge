@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Button from "../../components/Button/Button";
 import Table from "../../components/Table/Table";
 import { useAuth } from "../../context/AuthContext/AuthContext";
 import { getBooks } from "../../services/books";
@@ -33,7 +34,7 @@ const Home = () => {
     setBooksStore(resBooksStore);
   };
 
-  const handleAvailable = (data: any) => {
+  const handleSelectAvailable = (data: any) => {
     const newBooksAvailable: any = booksStore.map((record: any) => {
       return {
         ...record,
@@ -76,31 +77,56 @@ const Home = () => {
 
   return (
     <HomeContainer>
-      <div className="buttonContainer">
-        {allowViewAllBooks ? (
-          <button onClick={() => handleViewAllBooks()}>
-            Ver todos los libros
-          </button>
-        ) : (
-          <button onClick={() => handlePopularBooks()}>
-            Ver libros mas populares
-          </button>
-        )}
-        <>
-          <button onClick={() => logout()}>Sign Out</button>
-        </>
-        <div className="filterContainer">
-          <button onClick={() => handleOnlyAvailableFilter()}>
-            Disponible
-          </button>
-          <button onClick={() => handleOnlyNotAvailableFilter()}>
-            No Disponible
-          </button>
-        </div>
-      </div>
       <div className="tableContainer">
+        <div className="buttonContainer">
+          <div className="filterContainer">
+            <div>
+              <Button
+                color="#4ab864"
+                onClick={() => handleOnlyAvailableFilter()}
+                text="Disponible"
+                width="130px"
+              />
+            </div>
+
+            <div>
+              <Button
+                color="#C43B01"
+                onClick={() => handleOnlyNotAvailableFilter()}
+                text="No Disponible"
+                width="130px"
+              />
+            </div>
+            {allowViewAllBooks ? (
+              <div>
+                <Button
+                  width="130px"
+                  text="Ver todos los libros"
+                  onClick={() => handleViewAllBooks()}
+                />
+              </div>
+            ) : (
+              <div>
+                <Button
+                  width="130px"
+                  text="Ver libros mas populares"
+                  onClick={() => handlePopularBooks()}
+                />
+              </div>
+            )}
+          </div>
+          <div>
+            <Button
+              width="50px"
+              radius="50%"
+              onClick={() => logout()}
+              text="Sign Out"
+              color="#9b5d5d"
+            />
+          </div>
+        </div>
         <Table
-          handleAvailable={handleAvailable}
+          handleAvailable={handleSelectAvailable}
           columns={columns}
           data={books}
         />
